@@ -15,10 +15,33 @@ export function connectToTheServer() {
   return action;
 }
 
-export function disconnectToTheServer() {
+export function sendMessage(name, text, id) {
   const action = {
-    type: SOCKETS_DISCONNECTING
+    type: SOCKETS_MESSAGE_SENDING,
+    payload: {
+      message: {
+        name,
+        text,
+        id
+      }
+    }
   };
-
+  console.log("sendMessage", action);
   return action;
 }
+
+// export function receivingMessages() {
+//   const action = {
+//     type: SOCKETS_MESSAGE_RECEIVING
+//   };
+//
+//   return action;
+// }
+
+// export function disconnectToTheServer() {
+//   const action = {
+//     type: SOCKETS_DISCONNECTING
+//   };
+//
+//   return action;
+// }
