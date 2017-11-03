@@ -16,18 +16,22 @@ class App extends Component {
     console.log("rnd");
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+        <header className="App__header">
+          <img src={logo} className="App__logo" alt="logo" />
+          <h1 className="App__title">Welcome to React</h1>
         </header>
-        <div class="container-fluid">
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
+        <div className="App__container container-fluid">
+          <h2>Product Card</h2>
 
           <Product />
+
+          <h3>Comments</h3>
           <Comments />
-          <AddComment />
+
+          <h3>Add comment</h3>
+          <div className="bd-example">
+            <AddComment />
+          </div>
         </div>
 
         {/* <div style={{ textAlign: "center" }}>

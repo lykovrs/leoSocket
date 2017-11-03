@@ -18,7 +18,7 @@ class AddComment extends Component {
   render() {
     return (
       <form className="form-inline" onSubmit={this.handleSubmit}>
-        <label className="sr-only" for="inlineFormInputGroupUsername2">
+        <label className="sr-only" htmlFor="inlineFormInputGroupUsername2">
           Username
         </label>
         <div className="input-group mb-2 mr-sm-2 mb-sm-0">
@@ -38,7 +38,7 @@ class AddComment extends Component {
             <input className="form-check-input" type="checkbox" /> Remember me
           </label>
         </div> */}
-        <label className="sr-only" for="inlineFormInputName2">
+        <label className="sr-only" htmlFor="inlineFormInputName2">
           Text
         </label>
         <input

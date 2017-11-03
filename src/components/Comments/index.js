@@ -20,7 +20,7 @@ class Comments extends Component {
       );
     });
     return (
-      <div>
+      <div className="App__comments">
         <div className="list-group">{messageNodes}</div>
       </div>
     );
@@ -30,7 +30,7 @@ class Comments extends Component {
 export default connect(state => {
   console.log("Comments ===>", state);
   return {
-    messages: state.comments.messages
+    messages: state.comments.messages.reverse()
     // loading: state.articles.isLoading
   };
 }, {})(Comments);
