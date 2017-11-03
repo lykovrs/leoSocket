@@ -13,7 +13,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("rnd");
     return (
       <div className="App">
         <header className="App__header">
@@ -33,10 +32,6 @@ class App extends Component {
             <AddComment />
           </div>
         </div>
-
-        {/* <div style={{ textAlign: "center" }}>
-          <button onClick={() => this.send()}>Change Color</button>
-        </div> */}
       </div>
     );
   }

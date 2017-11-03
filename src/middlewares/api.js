@@ -1,4 +1,10 @@
-import { START, SUCCESS, FAIL, SOCKETS_MESSAGE_RECEIVING } from "../constants";
+import {
+  START,
+  SUCCESS,
+  FAIL,
+  SOCKETS_MESSAGE_RECEIVING,
+  SOCKETS_PRODUCT_RECEIVING
+} from "../constants";
 import socketIOClient from "socket.io-client";
 
 export default store => next => action => {
@@ -17,8 +23,16 @@ export default store => next => action => {
     });
   });
 
+  socket.on("get product", product => {
+    next({
+      ...rest,
+      type: SOCKETS_PRODUCT_RECEIVING,
+      payload: { product },
+      connection: true
+    });
+  });
+
   socket.on("get messages", messages => {
-    console.log("get messages", messages);
     next({
       ...rest,
       type: SOCKETS_MESSAGE_RECEIVING,

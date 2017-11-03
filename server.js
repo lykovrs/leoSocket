@@ -18,7 +18,7 @@ function CreateNewSend(id, text, name) {
     id,
     text,
     name,
-    timeStamp: Date.now(),
+    timeStamp: new Date(),
     product: "ZBwfnbuzdI"
   };
 }
@@ -45,7 +45,9 @@ io.on("connection", socket => {
 
   socket.on("message send", message => {
     console.log("New message: ", message);
-    commentsCollection.push(JSON.parse(message));
+    let newMessage = JSON.parse(message);
+    newMessage.timeStamp = new Date();
+    commentsCollection.push(newMessage);
     io.sockets.emit("get messages", JSON.stringify(commentsCollection));
   });
 

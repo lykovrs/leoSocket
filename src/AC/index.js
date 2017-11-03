@@ -1,9 +1,4 @@
-import {
-  SOCKETS_CONNECTING,
-  SOCKETS_DISCONNECTING,
-  SOCKETS_MESSAGE_SENDING,
-  SOCKETS_MESSAGE_RECEIVING
-} from "../constants";
+import { SOCKETS_CONNECTING, SOCKETS_MESSAGE_SENDING } from "../constants";
 
 export function connectToTheServer() {
   console.log("connectToTheServer");
@@ -26,22 +21,6 @@ export function sendMessage(name, text, id) {
       }
     }
   };
-  console.log("sendMessage", action);
+
   return action;
 }
-
-// export function receivingMessages() {
-//   const action = {
-//     type: SOCKETS_MESSAGE_RECEIVING
-//   };
-//
-//   return action;
-// }
-
-// export function disconnectToTheServer() {
-//   const action = {
-//     type: SOCKETS_DISCONNECTING
-//   };
-//
-//   return action;
-// }
