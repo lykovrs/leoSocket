@@ -1,10 +1,9 @@
-import { Record } from "immutable";
-
 import { SOCKETS_PRODUCT_RECEIVING } from "../constants";
+import { DefaultProductState } from "./helpers";
 
-const defaultState = new Record({ active: null });
+const defaultState = new DefaultProductState();
 
-export default (state = new defaultState(), action) => {
+export default (state = defaultState, action) => {
   const { type, payload } = action;
   switch (type) {
     case SOCKETS_PRODUCT_RECEIVING:

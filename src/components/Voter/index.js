@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import { likeComment } from "../../AC";
 import { connect } from "react-redux";
 
+/**
+ * Компонент голосования к комментарию
+ * @type {Object}
+ */
 class Voter extends Component {
   static get defaultProps() {
     return {
@@ -18,6 +22,11 @@ class Voter extends Component {
     id: PropTypes.string.isRequired,
     likes: PropTypes.number.isRequired
   };
+
+  /**
+   * render
+   * @return {ReactElement} разметка
+   */
   render() {
     return (
       <div className="input-group w-50 ">
@@ -48,11 +57,20 @@ class Voter extends Component {
     );
   }
 
+  /**
+   * Клик по плюсу
+   * @param  {Event} ev
+   * @return {Void}
+   */
   like = ev => {
     this.props.likeComment(this.props.id, 1);
     this.setState({ disabled: true });
   };
-
+  /**
+   * Клик  по минусу
+   * @param  {Event} ev
+   * @return {Void}
+   */
   unLike = ev => {
     this.props.likeComment(this.props.id, -1);
     this.setState({ disabled: true });

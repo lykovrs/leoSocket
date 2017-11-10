@@ -1,4 +1,4 @@
-import { DefaultReducerState } from "./helpers";
+import { DefaultCommentsState } from "./helpers";
 import { Map } from "immutable";
 
 import {
@@ -10,7 +10,8 @@ import {
   LIKE_COMMENT
 } from "../constants";
 
-const defaultState = new DefaultReducerState();
+// Создаем состояние по-умочанию
+const defaultState = new DefaultCommentsState();
 
 export default (state = defaultState, action) => {
   const { type, payload } = action;
@@ -31,7 +32,7 @@ export default (state = defaultState, action) => {
         ["messages"],
         new Map(
           JSON.parse(payload.messages, function(key, value) {
-            if (key == "timeStamp") return new Date(value);
+            if (key === "timeStamp") return new Date(value);
             return value;
           })
         )

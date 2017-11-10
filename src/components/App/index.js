@@ -8,10 +8,18 @@ import Comments from "../Comments";
 import AddComment from "../AddComment";
 
 class App extends Component {
+  /**
+   * Устанавливаем ссоединение с сервером перед рендером страницы
+   * @return {Void}
+   */
   componentDidMount() {
     this.props.connectToTheServer();
   }
 
+  /**
+   * render
+   * @return {ReactElement} разметка
+   */
   render() {
     return (
       <div className="App">

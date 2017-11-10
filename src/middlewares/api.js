@@ -8,9 +8,11 @@ import {
 import socketIOClient from "socket.io-client";
 
 export default store => next => action => {
+  // Если action не содержит callAPI пропускаем как есть
   if (!action.callAPI) return next(action);
 
   const { callAPI, type, ...rest } = action;
+  // Старт ссоединения с сервером
   next({ ...rest, type: type + START, connection: false });
 
   const socket = socketIOClient(callAPI);
@@ -22,7 +24,7 @@ export default store => next => action => {
       payload: { socket }
     });
   });
-
+  // Получение данных продукта
   socket.on("get product", product => {
     next({
       ...rest,
@@ -31,7 +33,7 @@ export default store => next => action => {
       connection: true
     });
   });
-
+  // Получение комментариев
   socket.on("get messages", messages => {
     next({
       ...rest,
@@ -40,7 +42,7 @@ export default store => next => action => {
       connection: true
     });
   });
-
+  // Потеря ссоединения
   socket.on("disconnect", () => {
     console.log("disconnect");
     next({ ...rest, type: type + FAIL, connection: false });

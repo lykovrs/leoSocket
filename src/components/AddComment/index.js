@@ -3,27 +3,44 @@ import { connect } from "react-redux";
 import { sendMessage } from "../../AC";
 import { makeid } from "../../utils";
 
+/**
+ * Компонент добавления комментария
+ * @type {Object}
+ */
 class AddComment extends Component {
   state = { value: "", name: "" };
+
+  /**
+   * Обработчик изменения состояния полей ввода
+   * @param  {Event} event
+   * @return {Void}
+   */
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  /**
+   * Отправка формы
+   * @param  {Event} event
+   * @return {Void}
+   */
   handleSubmit = event => {
     event.preventDefault();
     this.props.sendMessage(this.state.name, this.state.value, makeid(10));
     this.setState({ value: "" });
   };
 
+  /**
+   * render
+   * @return {ReactElement} разметка
+   */
   render() {
     return (
       <form className="form-inline" onSubmit={this.handleSubmit}>
-        <label className="sr-only" htmlFor="inlineFormInputGroupUsername2">
-          Username
-        </label>
         <div className="input-group mb-2 mr-sm-2 mb-sm-0">
           <div className="input-group-addon">@</div>
           <input
+            required
             type="text"
             className="form-control"
             name="name"
@@ -33,15 +50,8 @@ class AddComment extends Component {
           />
         </div>
 
-        {/* <div className="form-check mb-2 mr-sm-2 mb-sm-0">
-          <label className="form-check-label">
-            <input className="form-check-input" type="checkbox" /> Remember me
-          </label>
-        </div> */}
-        <label className="sr-only" htmlFor="inlineFormInputName2">
-          Text
-        </label>
         <input
+          required
           name="value"
           type="text"
           value={this.state.value}

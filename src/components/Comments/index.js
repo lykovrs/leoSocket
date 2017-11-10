@@ -3,14 +3,20 @@ import { connect } from "react-redux";
 import moment from "moment";
 import Voter from "../Voter";
 
+/**
+ * Список комментариев к карточке товара
+ * @type {Object}
+ */
 class Comments extends Component {
+  /**
+   * render
+   * @return {ReactElement} разметка
+   */
   render() {
     const { messages } = this.props;
     const messageNodes = messages.reverse().map(item => {
       const { name, id, text, timeStamp, likes } = item;
-
       let time = moment(timeStamp).format("MMMM Do YYYY, h:mm:ss a");
-
       return (
         <div
           key={id}
@@ -22,7 +28,6 @@ class Comments extends Component {
           </div>
           <p className="mb-1">{text}</p>
           <Voter id={id} likes={likes} />
-          {/* <small>Donec id elit non mi porta.</small> */}
         </div>
       );
     });

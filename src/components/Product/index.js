@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+/**
+ * Компонент карточки товара
+ * @type {Object}
+ */
 class Product extends Component {
+  /**
+   * render
+   * @return {ReactElement} разметка
+   */
   render() {
     if (!this.props.product) return null;
 
@@ -9,7 +17,7 @@ class Product extends Component {
 
     return (
       <div key={id} className="card bg-dark text-white">
-        <img className="card-img" src={img} />
+        <img className="card-img" src={img} alt="product" />
         <div className="card-img-overlay">
           <h4 className="card-title">{name}</h4>
           <p className="card-text">{description}</p>
