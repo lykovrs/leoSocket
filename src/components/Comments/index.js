@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
+import Voter from "../Voter";
 
 class Comments extends Component {
   render() {
     const { messages } = this.props;
-    const messageNodes = messages.map(item => {
-      const { name, id, text, timeStamp } = item;
+    const messageNodes = messages.reverse().map(item => {
+      const { name, id, text, timeStamp, likes } = item;
 
       let time = moment(timeStamp).format("MMMM Do YYYY, h:mm:ss a");
 
@@ -20,6 +21,7 @@ class Comments extends Component {
             <small>{time}</small>
           </div>
           <p className="mb-1">{text}</p>
+          <Voter id={id} likes={likes} />
           {/* <small>Donec id elit non mi porta.</small> */}
         </div>
       );
@@ -33,7 +35,8 @@ class Comments extends Component {
 }
 
 export default connect(state => {
+  let messages = state.comments.messages.toIndexedSeq().toArray();
   return {
-    messages: state.comments.messages.reverse()
+    messages
   };
 }, {})(Comments);

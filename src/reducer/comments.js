@@ -1,11 +1,13 @@
 import { DefaultReducerState } from "./helpers";
+import { Map } from "immutable";
 
 import {
   SOCKETS_CONNECTING,
   SOCKETS_MESSAGE_SENDING,
   SOCKETS_MESSAGE_RECEIVING,
   SUCCESS,
-  FAIL
+  FAIL,
+  LIKE_COMMENT
 } from "../constants";
 
 const defaultState = new DefaultReducerState();
@@ -25,7 +27,20 @@ export default (state = defaultState, action) => {
       return state;
 
     case SOCKETS_MESSAGE_RECEIVING:
-      return state.setIn(["messages"], JSON.parse(payload.messages));
+      return state.setIn(
+        ["messages"],
+        new Map(
+          JSON.parse(payload.messages, function(key, value) {
+            if (key == "timeStamp") return new Date(value);
+            return value;
+          })
+        )
+      );
+
+    case LIKE_COMMENT:
+      let { id, step } = payload;
+      state.socket.emit("like comment", JSON.stringify({ id, step }));
+      return state;
 
     default:
       return state;

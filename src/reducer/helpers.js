@@ -1,7 +1,7 @@
-import { Record, List } from "immutable";
+import { Record, Map } from "immutable";
 
 export const DefaultReducerState = new Record({
   connected: false,
   socket: null,
-  messages: new List([])
+  messages: new Map({})
 });

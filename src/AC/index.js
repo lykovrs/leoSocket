@@ -1,4 +1,8 @@
-import { SOCKETS_CONNECTING, SOCKETS_MESSAGE_SENDING } from "../constants";
+import {
+  SOCKETS_CONNECTING,
+  SOCKETS_MESSAGE_SENDING,
+  LIKE_COMMENT
+} from "../constants";
 
 export function connectToTheServer() {
   console.log("connectToTheServer");
@@ -19,6 +23,18 @@ export function sendMessage(name, text, id) {
         text,
         id
       }
+    }
+  };
+
+  return action;
+}
+
+export function likeComment(id, step) {
+  const action = {
+    type: LIKE_COMMENT,
+    payload: {
+      id,
+      step
     }
   };
 
